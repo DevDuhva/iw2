@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galeria de Imagens - Trabalho Final</title>
+
+ 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+
+  <style>
+  
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      margin:0;
+      padding:20px;
+      background:#f2f2f2;
+    }
+
+    h1{
+      text-align:center;
+      margin-bottom:25px;
+    }
+
+  
+    .glide{
+      max-width:900px;
+      margin:20px auto;
+    }
+
+   
+    .glide__slide img{
+      width:100%;
+      height:500px;
+      object-fit:cover;
+      border-radius:8px;
+    }
+
+    .thumbs{
+      max-width:900px;
+      margin:20px auto;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:10px;
+    }
+
+    .thumbs img{
+      width:100%;
+      height:90px;
+      object-fit:cover;
+      border-radius:6px;
+      cursor:pointer;
+      transition:0.2s;
+    }
+
+    .thumbs img:hover{
+      opacity:0.75;
+    }
+
+    footer{
+      text-align:center;
+      margin-top:40px;
+      color:#777;
+    }
+
+    
+    @media (max-width:600px){
+      .glide__slide img{ height:260px; }
+      .thumbs{ grid-template-columns:repeat(3,1fr); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Galeria com Glide.js</h1>
+
+  
+  <div class="glide" id="glide1">
+
+ 
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+
+      
+        <li class="glide__slide"><img src="natu.webp" alt="Imagem 1"></li>
+        <li class="glide__slide"><img src="natu2.webp" alt="Imagem 2"></li>
+        <li class="glide__slide"><img src="natu3.webp" alt="Imagem 3"></li>
+        <li class="glide__slide"><img src="natu4.webp" alt="Imagem 4"></li>
+        <li class="glide__slide"><img src="natu5.webp" alt="Imagem 5"></li>
+        <li class="glide__slide"><img src="natu6.webp" alt="Imagem 6"></li>
+        <li class="glide__slide"><img src="natu7.webp" alt="Imagem 7"></li>
+        <li class="glide__slide"><img src="natu8.webp" alt="Imagem 8"></li>
+        <li class="glide__slide"><img src="natu9.webp" alt="Imagem 9"></li>
+        <li class="glide__slide"><img src="natu10.webp" alt="Imagem 10"></li>
+
+      </ul>
+    </div>
+
+    
+    <div class="glide__arrows" data-glide-el="controls">
+      <button class="glide__arrow glide__arrow--left" data-glide-dir="<">‹</button>
+      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
+    </div>
+
+
+    <div class="glide__bullets" data-glide-el="controls[nav]">
+      <button class="glide__bullet" data-glide-dir="=0"></button>
+      <button class="glide__bullet" data-glide-dir="=1"></button>
+      <button class="glide__bullet" data-glide-dir="=2"></button>
+      <button class="glide__bullet" data-glide-dir="=3"></button>
+      <button class="glide__bullet" data-glide-dir="=4"></button>
+      <button class="glide__bullet" data-glide-dir="=5"></button>
+      <button class="glide__bullet" data-glide-dir="=6"></button>
+      <button class="glide__bullet" data-glide-dir="=7"></button>
+      <button class="glide__bullet" data-glide-dir="=8"></button>
+      <button class="glide__bullet" data-glide-dir="=9"></button>
+    </div>
+  </div>
+
+  
+  <div class="thumbs" id="thumbs">
+    <img data-index="0" src="natu.webp" alt="Thumb 1">
+    <img data-index="1" src="natu2.webp" alt="Thumb 2">
+    <img data-index="2" src="natu3.webp" alt="Thumb 3">
+    <img data-index="3" src="natu4.webp" alt="Thumb 4">
+    <img data-index="4" src="natu5.webp" alt="Thumb 5">
+    <img data-index="5" src="natu6.webp" alt="Thumb 6">
+    <img data-index="6" src="natu7.webp" alt="Thumb 7">
+    <img data-index="7" src="natu8.webp" alt="Thumb 8">
+    <img data-index="8" src="natu9.webp" alt="Thumb 9">
+    <img data-index="9" src="natu10.webp" alt="Thumb 10">
+  </div>
+
+
+ 
+  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
+
+  <script>
+ 
+    const glide = new Glide('#glide1', {
+      type: 'carousel',
+      perView: 1,
+      autoplay: 4000,
+      hoverpause: true,
+      animationDuration: 800
+    }).mount();
+
+    
+    document.getElementById('thumbs').addEventListener('click', function(e){
+      const img = e.target.closest('img');
+      if(!img) return;
+      glide.go('=' + img.dataset.index);
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  </script>
+
+</body>
+</html>
